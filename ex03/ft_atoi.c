@@ -1,23 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ginam <ginam@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/20 15:27:05 by ginam             #+#    #+#             */
-/*   Updated: 2021/10/20 15:35:12 by ginam            ###   ########.fr       */
+/*   Created: 2021/10/20 15:38:17 by ginam             #+#    #+#             */
+/*   Updated: 2021/10/20 21:24:15 by ginam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	ft_strlen(char *str)
+int	ft_atoi(char *str)
 {
-	int		cnt;
+	int	pm;
+	int	res;
 
-	cnt = 0;
-	while (str[cnt])
-		cnt++;
-	return (cnt);
+	res = 0;
+	pm = 1;
+	while ((*str >= 9 && *str <= 13) || (*str == 32))
+		str++;
+	while (*str == '+' || *str == '-')
+	{
+		if (*str == '-')
+			pm *= -1;
+		str++;
+	}
+	while (*str >= '0' && *str <= '9')
+	{
+		res *= 10;
+		res += *str - '0';
+		str++;
+	}
+	return (res * pm);
 }
