@@ -6,7 +6,7 @@
 /*   By: ginam <ginam@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 15:27:05 by ginam             #+#    #+#             */
-/*   Updated: 2021/10/20 15:35:12 by ginam            ###   ########.fr       */
+/*   Updated: 2021/10/23 09:48:44 by ginam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	ft_strlen(char *str)
 {
-	int		cnt;
+	int		i;
 
-	cnt = 0;
-	while (str[cnt])
-		cnt++;
-	return (cnt);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

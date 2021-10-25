@@ -6,66 +6,60 @@
 /*   By: ginam <ginam@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 17:00:02 by ginam             #+#    #+#             */
-/*   Updated: 2021/10/20 21:29:35 by ginam            ###   ########.fr       */
+/*   Updated: 2021/10/23 21:39:38 by ginam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdbool.h>
 
 int	ft_strlen(char *str)
 {
-	int	index;
+	int	i;
 
-	index = 0;
-	while (str[index])
-		index++;
-	return (index);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
-bool	is_space(char c)
+int	base_valid(char *str)
 {
-	return (c == '\t' || c == '\n' || c == '\v' || c == '\f'
-		|| c == '\r' || c == ' ');
-}
+	char	*p;
+	int		i;
+	int		j;
 
-bool	is_base_valid(char *str)
-{
-	char	*curr;
-	int		index;
-	int		jndex;
-
-	curr = str;
-	if (str == 0 || ft_strlen(str) <= 1)
-		return (false);
-	while (*curr)
+	p = str;
+	if (p[0] == 0 || ft_strlen(str) == 1)
+		return (-1);
+	while (*p)
 	{
-		if (is_space(*curr) || *curr == '+' || *curr == '-')
-			return (false);
-		curr++;
+		if ((*p >= 9 && *p <= 13) || (*p == 32)
+			|| *p == '+' || *p == '-')
+			return (-1);
+		p++;
 	}
-	index = 0;
-	while (index < curr - str)
+	i = 0;
+	while (i < ft_strlen(str))
 	{
-		jndex = index + 1;
-		while (jndex < curr - str)
-			if (str[index] == str[jndex++])
-				return (false);
-		index++;
+		j = i + 1;
+		while (j < ft_strlen(str))
+			if (str[i] == str[j++])
+				return (-1);
+		i++;
 	}
-	return (true);
+	return (0);
 }
 
-int	resolve_base(char *base, char match)
+int	find_num(char *base, char c)
 {
-	int		index;
+	int		i;
 
-	index = 0;
-	while (base[index])
+	i = 0;
+	while (base[i])
 	{
-		if (base[index] == match)
-			return (index);
-		index++;
+		if (base[i] == c)
+			return (i);
+		i++;
 	}
 	return (-1);
 }
@@ -76,12 +70,12 @@ int	ft_atoi_base(char *str, char *base)
 	int	res;
 	int	pm;
 
-	if (!is_base_valid(base))
+	if (base_valid(base) == -1)
 		return (0);
 	radix = ft_strlen(base);
 	res = 0;
 	pm = 1;
-	while (is_space(*str))
+	while ((*str >= 9 && *str <= 13) || *str == 32)
 		str++;
 	while (*str == '+' || *str == '-')
 	{
@@ -89,10 +83,10 @@ int	ft_atoi_base(char *str, char *base)
 			pm *= -1;
 		str++;
 	}
-	while ((resolve_base(base, *str)) != -1)
+	while ((find_num(base, *str)) != -1)
 	{
 		res *= radix;
-		res += resolve_base(base, *str);
+		res += find_num(base, *str);
 		str++;
 	}
 	return (res * pm);
