@@ -6,24 +6,24 @@
 /*   By: ginam <ginam@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 15:03:38 by ginam             #+#    #+#             */
-/*   Updated: 2021/10/23 15:45:23 by ginam            ###   ########.fr       */
+/*   Updated: 2021/10/25 11:36:59 by ginam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int main(int ac, char *av[])
+int	main(int argc, char *argv[])
 {
 	int		i;
-	int 	j;
-	
+	int		j;
+
 	i = 0;
-	while(++i < ac)
+	while (++i < argc)
 	{
 		j = 0;
-		while(av[i][j])
+		while (argv[i][j])
 		{
-			write(1, &av[i][j++], 1);
+			write(1, &argv[i][j++], 1);
 		}
 		write(1, "\n", 1);
 	}

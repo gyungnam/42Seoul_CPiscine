@@ -12,15 +12,15 @@
 
 #include <unistd.h>
 
-int	main(int ac, char *av[])
+int	main(int argc, char *argv[])
 {
 	int		i;
 
-	while (--ac > 0)
+	while (--argc > 0)
 	{
 		i = 0;
-		while (av[ac][i])
-			write(1, &av[ac][i++], 1);
+		while (argv[argc][i])
+			write(1, &argv[argc][i++], 1);
 		write(1, "\n", 1);
 	}
 }

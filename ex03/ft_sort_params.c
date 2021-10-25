@@ -23,47 +23,38 @@ void	ft_putstr(char *str)
 
 int	ft_strcmp(char *s1, char *s2)
 {
-	int		i;
-
-	i = 0;
-	while (s1[i])
+	while (*s1 != '\0' && *s2 != '\0' && *s1 == *s2)
 	{
-		if (s1[i] != s2[i])
-		{
-			return (s1[i] - s2[i]);
-		}
-		i++;
+		s1++;
+		s2++;
 	}
-	if (s2[i] == '\0')
-		return (0);
-	else
-		return (-s2[i]);
+	return (*s1 - *s2);
 }
 
-int	main(int ac, char *av[])
+int	main(int argc, char *argv[])
 {
 	char	*tmp;
 	int		i;
 	int		j;
 
 	i = 0;
-	while (++i < ac)
+	while (++i < argc)
 	{
 		j = i;
-		while (++j < ac)
+		while (++j < argc)
 		{
-			if (ft_strcmp(av[i], av[j]) > 0)
+			if (ft_strcmp(argv[i], argv[j]) > 0)
 			{
-				tmp = av[i];
-				av[i] = av[j];
-				av[j] = tmp;
+				tmp = argv[i];
+				argv[i] = argv[j];
+				argv[j] = tmp;
 			}
 		}
 	}
 	i = 0;
-	while (++i < ac)
+	while (++i < argc)
 	{
-		ft_putstr(av[i]);
+		ft_putstr(argv[i]);
 		write(1, "\n", 1);
 	}
 }

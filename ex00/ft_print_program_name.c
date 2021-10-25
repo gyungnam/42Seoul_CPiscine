@@ -12,14 +12,15 @@
 
 #include <unistd.h>
 
-int	main(int ac, char *av[])
+void	ft_putstr(char *str)
 {
-	int		i;
+	while (*str)
+		write(1, str++, 1);
+}
 
-	i = 0;
-	while (av[0][i])
-	{
-		write(1, &av[0][i++], 1);
-	}
+int	main(int argc, char *argv[])
+{
+	if (argc > 0)
+		ft_putstr(argv[0]);
 	write(1, "\n", 1);
 }
