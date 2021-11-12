@@ -1,0 +1,6 @@
+Credentials cache: API:DAEEE6CD-52C7-41F9-8F39-427D0B0C1221
+        Principal: ginam@42SEOUL.KR
+
+  Issued                Expires               Principal
+Oct 13 10:14:05 2021  Oct 13 20:14:05 2021  krbtgt/42SEOUL.KR@42SEOUL.KR
+Oct 13 10:14:07 2021  Oct 13 20:14:05 2021  HTTP/student-storage.42seoul.kr@42SEOUL.KR
